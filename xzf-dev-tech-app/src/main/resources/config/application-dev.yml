@@ -12,6 +12,7 @@ redis:
     config:
       host: 49.234.8.125
       port: 16379
+      password: bb43181782
       pool-size: 10
       min-idle-size: 5
       idle-timeout: 30000
