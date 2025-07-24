@@ -20,7 +20,6 @@ import org.springframework.ai.vectorstore.SearchRequest;
 import org.springframework.ai.vectorstore.SimpleVectorStore;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.FileNotFoundException;
@@ -50,7 +49,7 @@ public class RAGTest {
 
     @Test
     public void uploadTest() throws IOException {
-        String path="data/file.text";
+        String path= "data/file.txt";
         ClassPathResource resource = new ClassPathResource(path);
         if (!resource.exists()) {
             throw new FileNotFoundException("文件未找到: " + resource.getPath());
