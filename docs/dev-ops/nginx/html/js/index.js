@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
         fetch('http://localhost:8090/api/v1/rag/query_rag_tag_list')
             .then(response => response.json())
             .then(data => {
-                if (data.code === '0000' && data.data) {
+                if (data.code === 200 && data.data) {
                     // 清空现有选项（保留第一个默认选项）
                     while (ragSelect.options.length > 1) {
                         ragSelect.remove(1);
@@ -66,7 +66,7 @@ function deleteChat(chatId) {
 function updateChatList() {
     chatList.innerHTML = '';
     const chats = Object.keys(localStorage)
-      .filter(key => key.startsWith('chat_'));
+        .filter(key => key.startsWith('chat_'));
 
     const currentChatIndex = chats.findIndex(key => key.split('_')[1] === currentChatId);
     if (currentChatIndex!== -1) {
@@ -220,7 +220,7 @@ function appendMessage(content, isAssistant = false, saveToStorage = true) {
     }
 }
 
- function startEventStream(message) {
+function startEventStream(message) {
     if (currentEventSource) {
         currentEventSource.close();
     }

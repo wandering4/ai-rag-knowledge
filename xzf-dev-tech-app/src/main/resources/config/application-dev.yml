@@ -26,12 +26,17 @@ spring:
       # 连接测试query
       connection-test-query: SELECT 1
   ai:
+    openai:
+      base-url: https://pro-share-aws-api.zcyai.com/
+      embedding-model: text-embedding-ada-002
     ollama:
       base-url: http://49.234.8.125:11434
       embedding:
         options:
           num-batch: 512
           model: nomic-embed-text
+    rag:
+      embed: nomic-embed-text #nomic-embed-text、text-embedding-ada-002
 
 # Redis
 redis:
@@ -39,7 +44,6 @@ redis:
     config:
       host: 49.234.8.125
       port: 16379
-      password: bb43181782
       pool-size: 10
       min-idle-size: 5
       idle-timeout: 30000
