@@ -61,23 +61,24 @@ public class RAGTest {
         List<Document> documents = reader.get();
         List<Document> documentsSplitterList = tokenTextSplitter.apply(documents);
 
-        //数据去重
+        //数据去重和打标
         documents = documents.stream()
                 .filter(doc -> doc.getContent() != null && !doc.getContent().isEmpty())
                 .collect(Collectors.toMap(
                         Document::getContent,  // 以内容作为去重依据
-                        doc -> doc,
+                        doc -> {
+                            doc.getMetadata().put("knowledge", "知识库名称");  // 在去重时直接修改
+                            return doc;
+                        },
                         (existing, replacement) -> existing  // 保留第一个出现的文档
                 ))
                 .values()
                 .stream()
-                .peek(doc -> doc.getMetadata().put("knowledge", "知识库名称"))
                 .toList();
 
 
 
         //打标
-        documents.forEach(doc -> doc.getMetadata().put("knowledge","知识库名称"));
         documentsSplitterList.forEach(document -> {
             log.info("分割后文档内容: {}", document.getContent());
             document.getMetadata().put("knowledge", "知识库名称");

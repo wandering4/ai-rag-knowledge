@@ -19,4 +19,13 @@ public interface IRAGService {
      * @return
      */
     Response<String> uploadFile(String ragTag, List<MultipartFile> files);
+
+    /**
+     * 解析git仓库代码
+     * @param repoUrl
+     * @param username
+     * @param token
+     * @return
+     */
+    Response<String> analyzeGitRepository(String repoUrl, String username, String token) throws Exception;
 }
